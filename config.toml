@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://tehawol.github.io/LabVeilTech/"
 languageCode = "en-us"
 theme = "terminal"
 paginate = 5
