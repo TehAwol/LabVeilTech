@@ -1,0 +1,154 @@
+<!doctype html><html lang=en>
+<head>
+<title>Proposition de pipe operator pour JavaScript :: Blog de Mikkel</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages. Parlons en!">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://tehawol.github.io/LabVeilTech/posts/pipe-operator/>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/style.css>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/pink.css>
+<link rel=apple-touch-icon href=https://tehawol.github.io/LabVeilTech/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://tehawol.github.io/LabVeilTech/img/favicon/pink.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content="Mikkel">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proposition de pipe operator pour JavaScript">
+<meta property="og:description" content="L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages. Parlons en!">
+<meta property="og:url" content="https://tehawol.github.io/LabVeilTech/posts/pipe-operator/">
+<meta property="og:site_name" content="Blog de Mikkel">
+<meta property="og:image" content="https://tehawol.github.io/LabVeilTech/hello.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-01-15 00:00:00 +0000 UTC">
+</head>
+<body class=pink>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Mikvester
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://tehawol.github.io/LabVeilTech/posts/pipe-operator/>Proposition de pipe operator pour JavaScript</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-01-15
+</span>
+<span class=post-author>:: Mikkel</span>
+</div>
+<img src=https://tehawol.github.io/LabVeilTech/hello.jpg class=post-cover alt="Proposition de pipe operator pour JavaScript" title="Cover Image">
+<div class=post-content><div>
+<h1 id=proposition-de-pipe-operator-pour-javascript>Proposition de pipe operator pour JavaScript<a href=#proposition-de-pipe-operator-pour-javascript class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<p>L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages.</p>
+<p>Les défenseurs de la proposition affirment que des fonctions imbriquées peuvent rapidement devenir complexes et illisibles. Pour combler ceci, ils veulent introduire l’opérateur “|>” à JavaScript.</p>
+<p>Pour comprendre ce que cet opérateur peut apporter au language, regardons les deux propositions.</p>
+<h2 id=fonctionnement-du-hack-pipe>Fonctionnement du Hack pipe<a href=#fonctionnement-du-hack-pipe class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Voici un exemple de fonctions imbriquées avec et sans l’opérateur pipe:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#75715e>// Sans opérateur pipe
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>h</span>(<span style=color:#a6e22e>g</span>(<span style=color:#a6e22e>f</span>(<span style=color:#a6e22e>x</span>)));
+
+<span style=color:#75715e>// Avec opérateur pipe
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>f</span>(<span style=color:#f92672>%</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>g</span>(<span style=color:#f92672>%</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>h</span>(<span style=color:#f92672>%</span>);
+</code></pre></div><h3 id=avantages>Avantages<a href=#avantages class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>L’opérateur n’a pas pour but de racocurcir des syntaxes mais plutôt les rendre plus accessibles / lisibles. Le hack pipe utilise le symbole % pour indiquer au pipe ou le résultat doit aller.</p>
+<p>L’opérateur tel qu’il est peut gérer les mots-clés <strong>await</strong> et <strong>yield</strong> sans syntaxe spéciale.</p>
+<h3 id=désavantages>Désavantages<a href=#désavantages class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Cette proposition peut très rapidement devenir lourd dû à l’usage du caractère % pour dénoter le résultat.</p>
+<p>Certains affirment que le Hack pipe n’est qu’une implémentation partielle du F# pipe plus complet et suggère un implémentation optionnelle sans le caractère % tel que le F# pipe.</p>
+<h2 id=fonctionnement-du-f-pipe>Fonctionnement du F# pipe<a href=#fonctionnement-du-f-pipe class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>En reprenant le code de dessus:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#75715e>// Sans opérateur pipe
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>h</span>(<span style=color:#a6e22e>g</span>(<span style=color:#a6e22e>f</span>(<span style=color:#a6e22e>x</span>)));
+
+<span style=color:#75715e>// Avec opérateur pipe
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>f</span> <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>g</span> <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>h</span>;
+</code></pre></div><h3 id=avantages-1>Avantages<a href=#avantages-1 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>La proposition du F# pipe n’utilise pas le caractère %, il applique automatiquement la fonction à sa droite à la variable à sa gauche. De ce fait il est moins verveux que le Hack pipe. Ceci le rend par exemple beaucoup plus performant lors de la déstructuration d’objets :</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>=</span> {<span style=color:#a6e22e>first</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#a6e22e>last</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;b&#34;</span>};
+
+<span style=color:#75715e>// F# pipe
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>str</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>|&gt;</span> ({<span style=color:#a6e22e>first</span>,<span style=color:#a6e22e>last</span>}) =&gt; <span style=color:#a6e22e>first</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39; &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>last</span>;
+
+<span style=color:#75715e>// Hack pipe sans déstructuration
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>str</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>|&gt;</span> <span style=color:#f92672>%</span>.<span style=color:#a6e22e>first</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39; &#39;</span> <span style=color:#f92672>+</span> <span style=color:#f92672>%</span>.<span style=color:#a6e22e>last</span>;
+<span style=color:#75715e>// Hack pipe avec déstructuration
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>str</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>|&gt;</span> (({<span style=color:#a6e22e>first</span>,<span style=color:#a6e22e>last</span>}) =&gt; <span style=color:#a6e22e>first</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39; &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>last</span>)(<span style=color:#f92672>%</span>);
+</code></pre></div><p>Le F# pipe se prête aussi mieux à des currifications de fonctions, à la cause une arité plus grand que 1 (fonctions prenant plus d’un arguments).</p>
+<h3 id=désavantages-1>Désavantages<a href=#désavantages-1 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Malheureusement la currification n’est pas toujours le meilleur choix en JavaScript, l’absence d’un opérateur “d’application partielle” en serait la cause. De ce fait, le F# pipe devient plus verbeux que sa concurrence.</p>
+<p>L’utilisation de mémoire n’est pas optimale avec cet opérateur à cause de la création et l’invocation de fonctions à chaque utilisation. De plus, les mots-clés <strong>await</strong> et <strong>yield</strong> ne fonctionnent pas avec.</p>
+<p>Finalement l’introduction du F# pipe pourrait amener à un ecosystème JavaScript dans lequel une moitié emploie fortement la currification et l’autre non.</p>
+<h2 id=utilisations>Utilisations<a href=#utilisations class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Un pipe opérateur dans JavaScript aurait 3 buts:</p>
+<ul>
+<li>Améliorer la syntaxe de fonctions imbriquées</li>
+<li>Post-processing de valeurs</li>
+<li>Permets l’enchainement d’opérations</li>
+</ul>
+<p>Comme indiqué et montré ci-dessus, l’opérateur permet d’écrire des fonctions imbriquées complexes d’une manière beaucoup plus lisible et explicite. Ceci est grâce à l’enchainement d’opérations qui rend notre code plus logique et également moins verbeux.</p>
+<p>L’opérateur permet également du post processing de valeurs ou de fonctions sur une ligne au lieu de plusieurs au lieu de devoirs passer par des variables temporaires.</p>
+<h2 id=conclusion>Conclusion<a href=#conclusion class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>L’introduction d’un opérateur pipe dans JavaScript pourrait apporter avec lui un nombre d’avantages et permettre d’écrire du code plus compréhensible. Cependant toutes les solutions proposées ont leurs désavantages.</p>
+<p>Des propositions alternatives pour répondre au même problème existent tel que “Function.pipe()” qui devrait nous permettre de déclarer une logique similaire avec des arrows fonctions. Mais tout comme le F# pipe, celui-ci ne permet pas l’utilisation de <strong>await</strong> et <strong>yield.</strong></p>
+<p>Pour l’instant il est possible de contourner l’absence de ce opérateur en utilisant des variables temporaires pour nos calculs, le désavantage étant sa verbosité. On peut améliorer ceci en utilisant des variables avec des noms courts ce qui péjore la lisiblité du code.</p>
+<h2 id=à-retenir>À retenir<a href=#à-retenir class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>L’opérateur Hack pipe a été retenu comme proposition par TC39 à l’instar du F# pipe. Pour cause les faiblesses du F# pipe.</p>
+<p>Une future implémentation de cette opérateur pourrait drastiquement changer la logique et l’approche que nous prenons vis-à-vis de certaines opérations en améliorant la lisibilité du code dans certains cas de figure ou en permettant des enchainements.</p>
+<p>Cette introduction ne serait pas non plus un miracle pour le language car toutes les opérations mentionnées sont actuellements possibles bien qu’ils demandent une implémentation un peu plus complexe. Le pipe serait donc plus une amélioration du “quality of life” des développeurs.</p>
+<h3 id=sources->Sources :<a href=#sources- class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<ul>
+<li><a href="https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com"></a><a href="https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com">https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com</a></li>
+<li><a href=https://github.com/tc39/proposal-pipeline-operator>GitHub - tc39/proposal-pipeline-operator: A proposal for adding a useful pipe operator to JavaScript.</a></li>
+<li><a href=https://github.com/tc39/proposal-pipeline-operator/issues/205>Hack is dead. Long live F#. · Issue #205 · tc39/proposal-pipeline-operator · GitHub</a></li>
+</ul>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button previous">
+<a href=https://tehawol.github.io/LabVeilTech/posts/web3/>
+<span class=button__icon>←</span>
+<span class=button__text>Web3, une solution miracle ?</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://tehawol.github.io/LabVeilTech/assets/main.js></script>
+<script src=https://tehawol.github.io/LabVeilTech/assets/prism.js></script>
+</div>
+</body>
+</html>

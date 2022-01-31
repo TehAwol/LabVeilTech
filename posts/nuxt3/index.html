@@ -1,0 +1,157 @@
+<!doctype html><html lang=en>
+<head>
+<title>Nuxt3, la prochaine étape :: Blog de Mikkel</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://tehawol.github.io/LabVeilTech/posts/nuxt3/>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/style.css>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/pink.css>
+<link rel=apple-touch-icon href=https://tehawol.github.io/LabVeilTech/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://tehawol.github.io/LabVeilTech/img/favicon/pink.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content="Mikkel">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nuxt3, la prochaine étape">
+<meta property="og:description" content="Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.">
+<meta property="og:url" content="https://tehawol.github.io/LabVeilTech/posts/nuxt3/">
+<meta property="og:site_name" content="Blog de Mikkel">
+<meta property="og:image" content="https://tehawol.github.io/LabVeilTech/hello.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-01-19 00:00:00 +0000 UTC">
+</head>
+<body class=pink>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Mikvester
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://tehawol.github.io/LabVeilTech/posts/nuxt3/>Nuxt3, la prochaine étape</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-01-19
+</span>
+<span class=post-author>:: Mikkel</span>
+</div>
+<img src=https://tehawol.github.io/LabVeilTech/hello.jpg class=post-cover alt="Nuxt3, la prochaine étape" title="Cover Image">
+<div class=post-content><div>
+<h1 id=nuxt3-la-prochaine-étape>Nuxt3, la prochaine étape.<a href=#nuxt3-la-prochaine-étape class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<h3 id=nuxt-en-quelques-mots>Nuxt en quelques mots<a href=#nuxt-en-quelques-mots class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.</p>
+<p>Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.</p>
+<h2 id=que-promet-nuxt3->Que promet Nuxt3 ?<a href=#que-promet-nuxt3- class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<h3 id=script-setup-avec-composition-api-pour-les-sfc>Script Setup avec Composition API pour les SFC<a href=#script-setup-avec-composition-api-pour-les-sfc class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks. La possibilité d’utiliser le script setup avec la composition API est toujours présente ce qui a pour but de rendre les composants plus lisibles et le code plus accessible.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx>&lt;<span style=color:#f92672>template</span>&gt;
+  &lt;<span style=color:#f92672>button</span>&gt;<span style=color:#a6e22e>Count</span>&lt;/<span style=color:#f92672>button</span>&gt;
+  &lt;<span style=color:#f92672>Component</span>&gt;{{ <span style=color:#a6e22e>counter</span> }}&lt;/<span style=color:#f92672>Component</span>&gt;
+&lt;/<span style=color:#f92672>template</span>&gt;
+
+<span style=color:#75715e>// Avec script setup
+</span><span style=color:#75715e></span>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>setup</span>&gt;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Component</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./components/Component&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ref</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;vue&#39;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>counter</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#ae81ff>0</span>)
+&lt;<span style=color:#f92672>script</span>&gt;
+
+<span style=color:#75715e>// Sans script setup
+</span><span style=color:#75715e></span>&lt;<span style=color:#f92672>script</span>&gt;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Component</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./components/Component&#39;</span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ref</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;vue&#39;</span>;
+
+<span style=color:#75715e>// in our component
+</span><span style=color:#75715e></span><span style=color:#a6e22e>setup</span> (<span style=color:#a6e22e>props</span>) {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>counter</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#ae81ff>0</span>)
+  }
+
+  <span style=color:#66d9ef>return</span> {
+    <span style=color:#a6e22e>counter</span>
+  }
+}
+&lt;<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>Comme montré dans l’exemple, le script setup nous permet de nous affranchir de la fonction setup() et les variables qu’on en retourne. De plus, l’usage du Composition API introduit une structure plus cohérente à notre code qui permet de grouper notre code par logique au lieu de dépendre d’une structure orienté Options API.</p>
+<p>Dans l’ensemble, ces ajouts permettent du code plus concis (élimination de beaucoup de logique de Vue) et une meilleure expérience de développement.</p>
+<h3 id=nuxt-nitro>Nuxt Nitro<a href=#nuxt-nitro class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Le nouveau serveur engine de Nuxt est Nitro qui amène avec lui un nombre de changements et de possibilités aux applications Nuxt. Tout comme Next, il est désormais possible de créer des routes API en plaçant nos fichiers dans les directoires concernés au lieu de les coder tel que dans Express.</p>
+<p>Des déploiements facilités sur diverses plateformes telles que Vercel, Netlify, AWS, Azure ou encore des Node ou Deno.</p>
+<p>Une génération statique de site statique va être implémentée de manière incrémentale.</p>
+<p>Selon certain Nitro serait capable de produire des bundles qui seront jusqu’à 75x plus léger (client et serveur), une affirmation qui vaudrait l’objet d’une future expérimentation.</p>
+<h3 id=nuxt-bridge>Nuxt Bridge<a href=#nuxt-bridge class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Pour les applications qui tournent actuellement sur Nuxt2 ou Vue 2, l’introduction de Nuxt Bridge permet de faire le pas intermédiaire vers Nuxt3 en conservant d’anciennes fonctionnalités tout en introduisant progressivement des nouveaux.</p>
+<p>Nuxt Bridge permet de prendre avantage du TypeScript avec la Composition API et Script Setup de manière partielle. Des composants ou plus généralement du code TS peuuvent donc être introduits graduellement dans nos applications. Cet intermédiaire introduit également Nuxi, le nouveau CLI de Nuxt 3.</p>
+<h3 id=typescript>TypeScript<a href=#typescript class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Nuxt3 introduit l’usage complet de TypeScript à la place de JavaScript. Une direction qu’une grande partie des frameworks semblent prendre. Nuxt Bridge devrait permettre cette transition pour des applications existantes.</p>
+<p>TypeScript donne la possibilité de construire des applications qui évoluent tout en offrant du code plus strict et une meilleure expérience dev.</p>
+<p>Ce changement semble venir très tard pour un framework tel que Nuxt mais étant jusqu’à récemment dépendant de Vue 2, cette évolution n’était pas possible avant.</p>
+<h2 id=a-retenir>A retenir<a href=#a-retenir class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Nuxt3 semble sans aucun doute être l’équivalent Vue de Next.js. Encore en phase de développement avec beaucoup d’implémentations à venir, le framework est très prometteur.</p>
+<p>Le passage à TypeScript devrait encourager l’adoption plus générale du language dans les écosystèmes Vue et aussi permettre de construire des applications plus grandes et plus efficaces.</p>
+<p>Ceci combiné au Composition API et le Script Setup devrait introduire un standard (best practice) de code pour les applications Vue 3 qui d’expérience sont très permissibles et peuvent parfois amener à des confusions entre collaborateurs.</p>
+<p>Dans l’ensemble, le framework prend avantage des améliorations amenées par Vue3 et construit dessus pour fournir une expérience de développement amélioré.</p>
+<h2 id=sources>Sources<a href=#sources class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<ul>
+<li><a href=https://www.vuemastery.com/blog/nuxt-3-is-here/></a><a href=https://www.vuemastery.com/blog/nuxt-3-is-here/>Nuxt 3 is here! What does that mean for you? | Vue Mastery</a></li>
+<li><a href=https://v3.nuxtjs.org/concepts/introduction></a><a href=https://v3.nuxtjs.org/concepts/introduction>Nuxt 3 - What is Nuxt?</a></li>
+<li><a href=https://www.sitepoint.com/nuxt-3-whats-new-get-started/></a><a href=https://www.sitepoint.com/nuxt-3-whats-new-get-started/>SitePoint</a></li>
+</ul>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button previous">
+<a href=https://tehawol.github.io/LabVeilTech/posts/experimentation/>
+<span class=button__icon>←</span>
+<span class=button__text>Expérimentation - Gestion de routes asyncrones sur Express</span>
+</a>
+</span>
+<span class="button next">
+<a href=https://tehawol.github.io/LabVeilTech/posts/web3/>
+<span class=button__text>Web3, une solution miracle ?</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://tehawol.github.io/LabVeilTech/assets/main.js></script>
+<script src=https://tehawol.github.io/LabVeilTech/assets/prism.js></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html><html lang=en>
+<head>
+<title>Expérimentation - Gestion de routes asyncrones sur Express :: Blog de Mikkel</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Dans cette expérimentation, je vais implémenter une requête asynconre dans une route Express de différentes façons en regardant les avantages et désavantages.">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://tehawol.github.io/LabVeilTech/posts/experimentation/>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/style.css>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/pink.css>
+<link rel=apple-touch-icon href=https://tehawol.github.io/LabVeilTech/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://tehawol.github.io/LabVeilTech/img/favicon/pink.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content="Mikkel">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expérimentation - Gestion de routes asyncrones sur Express">
+<meta property="og:description" content="Dans cette expérimentation, je vais implémenter une requête asynconre dans une route Express de différentes façons en regardant les avantages et désavantages.">
+<meta property="og:url" content="https://tehawol.github.io/LabVeilTech/posts/experimentation/">
+<meta property="og:site_name" content="Blog de Mikkel">
+<meta property="og:image" content="https://tehawol.github.io/LabVeilTech/hello.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2021-01-24 00:00:00 +0000 UTC">
+</head>
+<body class=pink>
+<div class="container full headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Mikvester
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/LabVeilTech/about>About</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://tehawol.github.io/LabVeilTech/posts/experimentation/>Expérimentation - Gestion de routes asyncrones sur Express</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-01-24
+</span>
+<span class=post-author>:: Mikkel</span>
+</div>
+<img src=https://tehawol.github.io/LabVeilTech/hello.jpg class=post-cover alt="Expérimentation - Gestion de routes asyncrones sur Express" title="Cover Image">
+<div class=post-content><div>
+<h1 id=expérimentation---gestion-de-routes-asyncrones-sur-express>Expérimentation - Gestion de routes asyncrones sur Express<a href=#expérimentation---gestion-de-routes-asyncrones-sur-express class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<h2 id=asyncrone-et-express>Asyncrone et Express<a href=#asyncrone-et-express class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Dans le framework Node.js, Express, je vais mettre en place un REST API qui retourne divers ressources grâce à des requêtes. Je vais employer du code asyncrone afin de communiquer avec notre base de données hébergé sur un serveur MongoDB externe.</p>
+<p>Devant faire face à divers latence ou tout simplement des érreurs, il est important qu&rsquo;un gestion d&rsquo;erreur est en place pour le code asyncrone. Express propose déjà une gestion d’erreur avec son Error Handler qui est accéssible en utilisant lui passant l’erreur grâce à next().</p>
+<h2 id=le-contexte-et-but-de-lexpérimentation>Le contexte et but de l’expérimentation<a href=#le-contexte-et-but-de-lexpérimentation class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Dans cette expérimentation, je vais implémenter une requête asynconre dans une route Express. Je vais travailler sur l’application Local-Search (<a href=https://github.com/Grolims/ArchiOWeb>GitHub - Grolims/ArchiOWeb: Deploy your REST API on a cloud application platform</a>), un REST API qui permet à des agriculteurs de partager leur points de ventes et les produits qui y sont disponibles. Les agriculteurs doivent crée un compte qui est associé à tout leurs points de ventes et leurs produits.</p>
+<p>Afin de pouvoir créer un nouveau produit, l’utilisateur et le point de vente associé doit exister. L’expérimentation va être fait sur la route correspondant (création de item) afin de pouvoir comprendre les différentes implémentations et si possible, identifier la solution optimale.</p>
+<h2 id=la-route-initiale>La route initiale<a href=#la-route-initiale class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Voici la route pour créer un nouveau produit (item).</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+  <span style=color:#75715e>// Vérifie que l&#39;utilisateur existe
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> });  <span style=color:#75715e>// Vérifie que le point de vente existe
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsSalepoint</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> });
+
+  <span style=color:#75715e>// Gestion d&#39;erreur si l&#39;utilisateur existe pas
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsUser</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+  }
+  <span style=color:#75715e>// Gestion d&#39;erreur si le point de vente existe pas
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsSalepoint</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+  }
+
+  <span style=color:#75715e>// Sauvegarde la nouveau produit et renvoie l&#39;entré à l&#39;utilisateur    
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newItem</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Item</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>);
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>();
+  <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>);
+});
+</code></pre></div><p>Cette implémentation présente plusieurs problèmes, les requêtes sont des opérations asyncrone qui font un appel à la base de données. Pour les gérer correctement dans le code nous devont rendre notre route (plus spécifiquement son callback) asyncrone avec le mot clé <strong>async</strong>. Les requêtes doivent également être précédé par le mot clé <strong>await</strong> pour indiquer qu’elles sont asyncrones.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> });
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsSalepoint</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> });
+
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsUser</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+  }
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsSalepoint</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+  }
+
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>();
+  <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>);
+});
+</code></pre></div><p>Le code est à présent exécutable en locale (si la BDD tourne sur notre machine). Comme indiqué dessus, une des contraintes pour la création d&rsquo;un produit est que l&rsquo;utilisateur et le point de vente associé existe. Les deux requêtes présentes s&rsquo;occupent de valider cette existence, en conséquence elles font donc appels à la base de données. Une gestion d&rsquo;erreur est donc cruciale pour gérer les cas de figure ou ces requêtes ne peuvent avoir lieu.</p>
+<h3 id=rappel-sur-les-promesses>Rappel sur les promesses<a href=#rappel-sur-les-promesses class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Les requêtes asyncrone sont temporairement des promesses en attendant leur réponse. La réponse donc notre cas va être un booléan si l&rsquo;utilisateur ou le point de vente existe, au contraire un erreur nous est retourné en cas d&rsquo;échec.</p>
+<h2 id=limplémentation-classique>L&rsquo;implémentation classique<a href=#limplémentation-classique class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Nous pouvons implémenter notre route en utilisant une logique avec .then().</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+    <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> })
+        .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>resp</span> =&gt; <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>resp</span>){
+            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+        })
+        .<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>err</span> =&gt; <span style=color:#a6e22e>next</span>(<span style=color:#a6e22e>err</span>));
+
+    <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> })
+        .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>resp</span> =&gt; <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>resp</span>){
+            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+        })
+        .<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>err</span> =&gt; <span style=color:#a6e22e>next</span>(<span style=color:#a6e22e>err</span>));
+
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newItem</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Item</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>);
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>().<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>)).<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>err</span> =&gt; <span style=color:#a6e22e>next</span>(<span style=color:#a6e22e>err</span>));
+
+});
+</code></pre></div><h3 id=verdicte>Verdicte<a href=#verdicte class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Cette implémentation est pas très accèssible (il arrive que des problèmes d&rsquo;identation surviennent sur des projets commun avec cette solution) et très verbeuse. Il est recommander de plutôt utiliser une try catch afin d&rsquo;améliorer la lisibilité du code et être à jour avec les best practices.</p>
+<h2 id=try--catch>Try & Catch<a href=#try--catch class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>La première solution que j&rsquo;ai implémenté était un Try & Catch. Dans le block Try si la requête ne se résoud pas correctement, un erreur est retourner au catch (d&rsquo;ou le nom) et je le passe à la gestion d&rsquo;erreur d&rsquo;Express en utilisant la fonction next().</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> });
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsSalepoint</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> });
+
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsUser</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+    }
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsSalepoint</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+    }
+
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newItem</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Item</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>);
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>();
+    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>);
+  } <span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>err</span>) {
+    <span style=color:#a6e22e>next</span>(<span style=color:#a6e22e>err</span>)
+  }
+});
+</code></pre></div><p>Toutes les requêtes asyncrone peuvent être encapsulé par le try catch car un erreur va directement se résoudre dans le catch.</p>
+<p>La fonction next() passe l&rsquo;erreur au gestionnaire d&rsquo;erreur d&rsquo;Express qui vient s&rsquo;ajouter à la fin du stack du middleware. Ce gestionnaire est très basique, il pourrait donc être intéressant d&rsquo;améliorer ceci.</p>
+<h3 id=verdicte-1>Verdicte<a href=#verdicte-1 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Cette implémentation est bien plus lisible que l&rsquo;usage de then(). Par contre</p>
+<h2 id=fonction-encapsulante>Fonction Encapsulante<a href=#fonction-encapsulante class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Une autre façon décrire le try catch serait avec un fonction asyncrone et un .then()</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>main</span>() {
+        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> });
+        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsSalepoint</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> });
+
+        <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsUser</span>) {
+          <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+        }
+        <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsSalepoint</span>) {
+          <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+        }
+
+        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newItem</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Item</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>);
+        <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>();
+        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>);
+    }
+
+    <span style=color:#a6e22e>main</span>().<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>next</span>)
+});
+</code></pre></div><p>Cette implémentation est complète mais il va rapidement devenir ennuyant d&rsquo;écrire tout ce code pour chaque route. En conséquence la fonction peut être utilisé comme un sorte de middleware qui encapsule les parties asyncrones.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/&#39;</span>,  <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+
+     <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>User</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>userId</span> });
+     <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>existsSalepoint</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Salepoint</span>.<span style=color:#a6e22e>countDocuments</span>({ <span style=color:#ae81ff>_</span><span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>salepointId</span> });
+
+     <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsUser</span>) {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;User ID missing or invalid&#39;</span>)
+     }
+     <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>existsSalepoint</span>) {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>400</span>).<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Salepoint ID missing or invalid&#39;</span>)
+     }
+
+     <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newItem</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Item</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>);
+     <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>newItem</span>.<span style=color:#a6e22e>save</span>();
+     <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>201</span>).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>newItem</span>);
+});
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>asyncHandler</span> (<span style=color:#a6e22e>callback</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) {
+        <span style=color:#a6e22e>callback</span>(<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>).<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>next</span>)
+    }
+}
+</code></pre></div><p>Comme mentionné avant, si un érreur survient le <strong>catch</strong> va l&rsquo;attraper et la passer au error handler de Express.</p>
+<h3 id=verdicte-2>Verdicte<a href=#verdicte-2 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Cette implémentation est très élégante est légère pour des applications de grande échelle. Il peut être employé comme une sorte d&rsquo;utilitaire pour gérer la majorité de notre code asyncrone dans nos routes. De plus, nous pouvons y ajouter une gestion d&rsquo;erreur plus complet que celui d&rsquo;Express si on le souhaite.</p>
+<h2 id=express-async-handler>Express Async Handler<a href=#express-async-handler class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>La fonction encapsulante est une implémentation assez répandu qui a donné lieu à plusieurs package qui accomplisent le même fonctionnement. Un exemple est express-async-handler.</p>
+<pre tabindex=0><code class=language-clike data-lang=clike>npm install express-async-handler --save
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>asyncHandler</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;express-async-handler&#39;</span>)
+
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/signup&#39;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#66d9ef>async</span>(<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>firstThing</span>()
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>secondThing</span>()
+}))
+</code></pre></div><p>Ce package accomplit exactement la même chose que l&rsquo;implémentation précédante en nous évitant de devoir déclarer une fonction. De plus, le package permet d&rsquo;assurer que next() est toujours le dernier arguments dans la pile de middlewares.</p>
+<h3 id=verdicte-3>Verdicte<a href=#verdicte-3 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<p>Plus léger et complet que l&rsquo;implémentation fait maison, cette solution est optimale pour gérer tout code asyncrone dans des routes Express. La déclaration non explicite du asyncHandler peut par contre péjorer la compréhension des collaborateurs.</p>
+<h2 id=a-retenir>A retenir<a href=#a-retenir class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Les routes présentants du code asyncrone sur Express peuvent être implémentés de différentes manières qui accomplisent tous la même tâche mais ayant tous leur propre complexité.</p>
+<p>Travaillant surtout sur des gros projets ou du code asyncrone est inévitable dans presque toutes les routes, il devient très avantageux d&rsquo;utiliser un package comme async-handler ou d&rsquo;en déclarer un nous même. Ceci permet aussi aux collaborateurs de contribuer du code uniforme et une compréhension plus complet de l&rsquo;application.</p>
+<p>Mais au final chaque implémentations fontionnent, le choix revient donc au développeur et à ses préférences.</p>
+<h3 id=sources->Sources :<a href=#sources- class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<ul>
+<li><a href=https://www.wisdomgeek.com/development/web-development/using-async-await-in-expressjs/>https://www.wisdomgeek.com/development/web-development/using-async-await-in-expressjs/</a></li>
+<li><a href=https://www.npmjs.com/package/express-async-handler>https://www.npmjs.com/package/express-async-handler</a></li>
+</ul>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=https://tehawol.github.io/LabVeilTech/posts/nuxt3/>
+<span class=button__text>Nuxt3, la prochaine étape</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://tehawol.github.io/LabVeilTech/assets/main.js></script>
+<script src=https://tehawol.github.io/LabVeilTech/assets/prism.js></script>
+</div>
+</body>
+</html>
