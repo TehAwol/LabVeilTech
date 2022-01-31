@@ -1,0 +1,145 @@
+<!doctype html><html lang=en>
+<head>
+<title>Observable, l’environnement dataviz accessible ? :: Blog de Mikkel</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Observable, un “environement de découverte intégré” qui promet de rendre la dataviz plus portable et rapide grâce à un code plus accessible. Que promet-il ?">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://tehawol.github.io/LabVeilTech/posts/observable/>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/style.css>
+<link rel=stylesheet href=https://tehawol.github.io/LabVeilTech/assets/pink.css>
+<link rel=apple-touch-icon href=https://tehawol.github.io/LabVeilTech/img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=https://tehawol.github.io/LabVeilTech/img/favicon/pink.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content="Mikkel">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Observable, l’environnement dataviz accessible ?">
+<meta property="og:description" content="Observable, un “environement de découverte intégré” qui promet de rendre la dataviz plus portable et rapide grâce à un code plus accessible. Que promet-il ?">
+<meta property="og:url" content="https://tehawol.github.io/LabVeilTech/posts/observable/">
+<meta property="og:site_name" content="Blog de Mikkel">
+<meta property="og:image" content="https://tehawol.github.io/LabVeilTech/hello.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:section" content="Frontend">
+<meta property="article:published_time" content="2021-12-27 00:00:00 +0000 UTC">
+</head>
+<body class=pink>
+<div class="container center headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/LabVeilTech>
+<div class=logo>
+Mikvester
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=/LabVeilTech/about>About</a></li>
+<li><a href=/LabVeilTech/categories>Categories</a></li>
+<ul class=menu__sub-inner>
+<li class=menu__sub-inner-more-trigger>Show more ▾</li>
+<ul class="menu__sub-inner-more hidden">
+<li><a href=/LabVeilTech/posts>Posts</a></li>
+</ul>
+</ul>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=/LabVeilTech/about>About</a></li>
+<li><a href=/LabVeilTech/categories>Categories</a></li>
+<li><a href=/LabVeilTech/posts>Posts</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=https://tehawol.github.io/LabVeilTech/posts/observable/>Observable, l’environnement dataviz accessible ?</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2021-12-27
+</span>
+<span class=post-author>:: Mikkel</span>
+</div>
+<span class=post-tags>
+#<a href=https://tehawol.github.io/LabVeilTech/tags/javascript/>JavaScript</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/observable/>Observable</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/d3/>D3</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/dataviz/>Dataviz</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/accessibility/>Accessibility</a>&nbsp;
+</span>
+<img src=https://tehawol.github.io/LabVeilTech/hello.jpg class=post-cover alt="Observable, l’environnement dataviz accessible ?" title="Cover Image">
+<div class=post-content><div>
+<h1 id=observable-lenvironnement-dataviz-accessible->Observable, l’environnement dataviz accessible ?<a href=#observable-lenvironnement-dataviz-accessible- class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<p>Mike Bostock, le créateur de la libraire D3 (librairie pour la visualisation des données), annonce la sortie d&rsquo;Observable. Un environnement de Dev en ligne.</p>
+<p>L’auteur explique qu’en produisant des visualisations plus complexes, le code le devenait également. Les languages de code utilisés, la syntaxe et la manière d’utilisation sont des sources de complexités qui contribue à ce problème. Le manque de preview pour certains utilisateurs est également une barrière à l’accessibilité du code et du domaine.</p>
+<p>Place à Observable. Un “environement de découverte intégré” qui promet de rendre la dataviz plus portable et rapide grâce à un <strong>code</strong> plus accessible. Un principe introduit sont des cellules de code que l’utilisateur peut ajouter à sa page de code (dans son navigateur). Dedans, il peut coder du JavaScript tout comme dans un vrai environnement. Bostock explique la raison d’être de Observable par 4 mots :</p>
+<ul>
+<li>Reactivité</li>
+<li>Visibilité</li>
+<li>Réusabilité</li>
+<li>Portabilité</li>
+</ul>
+<p>Un exemple des cellules de code et de la <strong>réactivité</strong> de Observable</p>
+<p><img src alt="1 fkkqWrbWXua8sMGlYqnqAgif"></p>
+<p>source : <a href=https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0></a><a href=https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0>https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0</a></p>
+<h2 id=reactivité>Reactivité<a href=#reactivité class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Pour ce faire il introduit la réactivité, comme beaucoup d’autres framework, les variables sont réactives au changement et ceci de manière globale (sur une page).</p>
+<p>Le code asynchrone est également pris en charge. Les cellules ne sont pas affichées tant que les requêtes soient résolues. Ce comportement est très important pour l’importation de libraire et bien sûr de données.</p>
+<p>De manière plus importante pour la visualisation de données, la réactivité de l’environnement nous permet d’utiliser D3 pour créer directement des graphes en ajoutant le SVG généré au DOM.</p>
+<p>Ceci nous permet d’ajouter plus interaction à nos graphes tels que des animations en une fois de plus prenant avantage de la libraire D3. Bostock donne également des exemples de graphes qui s’anime en fonction d’une valeur ou encore des proto-dashboard avec lequel l’utilisateur peut explorer les données avec un feedback visuel.</p>
+<h2 id=visibilité>Visibilité<a href=#visibilité class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Comme mentionné pour la réactivité, le fait de pouvoir afficher directement nos graphes à côté de notre code nous permet de les corriger plus facilement. Ceci rend également l’environnement hautement accessible en permettant à des débutants dans la visualisation de <strong>voir</strong> directement les changements dans le code ou pour les débutants d’avoir un feedback plus rapide et visuel de leur code.</p>
+<p>On souligne également la possibilité d’afficher des executions de code pour des algorithmes qui ont une certaine durée. Ceci peut paraître comme étant un simple exercice mais au final ceci est utile pour visualiser comment notre code s’exécute. Ceci est très intéressant dans des contextes mathématiques pour par exemple, la résolution de problèmes géométriques.</p>
+<h2 id=réusabilité>Réusabilité<a href=#réusabilité class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Un grand avantage du code et surtout des librairies, est leur réusabilité, leur qualité à être réutilisé plusieurs fois dans différents projets et de différentes manières. Pour conserver ceci, les pages Observable sont considérés comme des fichiers JS par d’autres pages (avec un require() ).</p>
+<p>Grâce à ce principe, les notebooks peuvent construit un peu comme tel des vrais projets dans lesquelles nous pouvons réutiliser des cellules ou page de code déclaré en amont.</p>
+<p>Le plus grand avantage est bien sûr le partage avec les autres utilisateurs, les pages de code sont considérés comme des fichiers ou libraire de code par <strong>de facto</strong>. De ce fait, il est possible d’importer des pages d’autres utilisateurs tels que des packages NPM.</p>
+<h2 id=portabilité>Portabilité<a href=#portabilité class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>Reposant sur votre navigateur et une connexion à Observable, l’environnement est très portable. Pour être rendu dans le navigateur, il utilise du JavaScript vanilla tout en donnant la possibilité d’importer des libraires ou du code d’ailleurs.</p>
+<p>Il va de même pour le partage. Bostock se plaint que la majorité du code partagé partagé sur GitHub n’est pas accessible car nous devons repeter un nombre d’opérations pour le visualiser dans notre navigateur. Observable répond à ce problème en mettant à disposition un environnement partageable qui affiche directement le code qui le compose.</p>
+<h2 id=verdicte>Verdicte<a href=#verdicte class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>La raison d’être de l’environnement est succintement expliquée par son créateur dans ces 4 points. Ayant utilisé l’environnement à divers buts, il est vrai qu’il répond à ces promesses mais derière cette élégante proposition, quelques problèmes se cachent.</p>
+<p>L’environnement est fortement accessible et en reposant sur JavaScript, des développeurs web ou encore des data scientists peuvent facilement faire le changement vers Observable ou le tester très rapidement. Certains développeurs l’utilise en effet à des buts de documentation interactive pour leurs projets GitHub.</p>
+<p>Dans mon usage, la puissance d&rsquo;Obersvable est dans son accessibilité. De pouvoir partager et travailler de manière interactive sur du code (comme un GitHub live) et de pouvoir montrer en live les conséquences de notre code.</p>
+<p>Ceci est fortement utile dans des contextes où l&rsquo;on travaille avec des personnes moins familiers avec le code ou qui on besoin d&rsquo;un feedback plus visuel.</p>
+<h3 id=sources->Sources :<a href=#sources- class=hanchor arialabel=Anchor>&#8983;</a> </h3>
+<ul>
+<li><a href=https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0></a><a href=https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0>https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0</a></li>
+</ul>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button previous">
+<a href=https://tehawol.github.io/LabVeilTech/posts/pipe-operator/>
+<span class=button__icon>←</span>
+<span class=button__text>Proposition de pipe operator pour JavaScript</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://tehawol.github.io/LabVeilTech/assets/main.js></script>
+<script src=https://tehawol.github.io/LabVeilTech/assets/prism.js></script>
+</div>
+</body>
+</html>

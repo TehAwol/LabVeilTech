@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on Blog de Mikkel</title><link>https://tehawol.github.io/LabVeilTech/tags/vue/</link><description>Recent content in Vue on Blog de Mikkel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 19 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://tehawol.github.io/LabVeilTech/tags/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Nuxt3, la prochaine étape</title><link>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</link><pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</guid><description>Nuxt3, la prochaine étape. Nuxt en quelques mots Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.
+Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.
+Que promet Nuxt3 ? Script Setup avec Composition API pour les SFC Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks.</description><content>&lt;h1 id="nuxt3-la-prochaine-étape">Nuxt3, la prochaine étape.&lt;/h1>
+&lt;h3 id="nuxt-en-quelques-mots">Nuxt en quelques mots&lt;/h3>
+&lt;p>Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.&lt;/p>
+&lt;p>Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.&lt;/p>
+&lt;p>&lt;img src="https://tehawol.github.io/LabVeilTech/static/images/nuxt3.jpg" alt="Nuxt3-image">&lt;/p>
+&lt;h2 id="que-promet-nuxt3-">Que promet Nuxt3 ?&lt;/h2>
+&lt;h3 id="script-setup-avec-composition-api-pour-les-sfc">Script Setup avec Composition API pour les SFC&lt;/h3>
+&lt;p>Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks. La possibilité d’utiliser le script setup avec la composition API est toujours présente ce qui a pour but de rendre les composants plus lisibles et le code plus accessible.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&amp;lt;&lt;span style="color:#f92672">template&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">button&lt;/span>&amp;gt;&lt;span style="color:#a6e22e">Count&lt;/span>&amp;lt;/&lt;span style="color:#f92672">button&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">Component&lt;/span>&amp;gt;{{ &lt;span style="color:#a6e22e">counter&lt;/span> }}&amp;lt;/&lt;span style="color:#f92672">Component&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">template&lt;/span>&amp;gt;
+&lt;span style="color:#75715e">// Avec script setup
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">setup&lt;/span>&amp;gt;
+&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">Component&lt;/span> &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./components/Component&amp;#39;&lt;/span>;
+&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">ref&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;vue&amp;#39;&lt;/span>;
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">counter&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">ref&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>)
+&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;span style="color:#75715e">// Sans script setup
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">Component&lt;/span> &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;./components/Component&amp;#39;&lt;/span>
+&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">ref&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;vue&amp;#39;&lt;/span>;
+&lt;span style="color:#75715e">// in our component
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">setup&lt;/span> (&lt;span style="color:#a6e22e">props&lt;/span>) {
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">counter&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">ref&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>)
+}
+&lt;span style="color:#66d9ef">return&lt;/span> {
+&lt;span style="color:#a6e22e">counter&lt;/span>
+}
+}
+&amp;lt;&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Comme montré dans l’exemple, le script setup nous permet de nous affranchir de la fonction setup() et les variables qu’on en retourne. De plus, l’usage du Composition API introduit une structure plus cohérente à notre code qui permet de grouper notre code par logique au lieu de dépendre d’une structure orienté Options API.&lt;/p>
+&lt;p>Dans l’ensemble, ces ajouts permettent du code plus concis (élimination de beaucoup de logique de Vue) et une meilleure expérience de développement.&lt;/p>
+&lt;h3 id="nuxt-nitro">Nuxt Nitro&lt;/h3>
+&lt;p>Le nouveau serveur engine de Nuxt est Nitro qui amène avec lui un nombre de changements et de possibilités aux applications Nuxt. Tout comme Next, il est désormais possible de créer des routes API en plaçant nos fichiers dans les directoires concernés au lieu de les coder tel que dans Express.&lt;/p>
+&lt;p>Des déploiements facilités sur diverses plateformes telles que Vercel, Netlify, AWS, Azure ou encore des Node ou Deno.&lt;/p>
+&lt;p>Une génération statique de site statique va être implémentée de manière incrémentale.&lt;/p>
+&lt;p>Selon certain Nitro serait capable de produire des bundles qui seront jusqu’à 75x plus léger (client et serveur), une affirmation qui vaudrait l’objet d’une future expérimentation.&lt;/p>
+&lt;h3 id="nuxt-bridge">Nuxt Bridge&lt;/h3>
+&lt;p>Pour les applications qui tournent actuellement sur Nuxt2 ou Vue 2, l’introduction de Nuxt Bridge permet de faire le pas intermédiaire vers Nuxt3 en conservant d’anciennes fonctionnalités tout en introduisant progressivement des nouveaux.&lt;/p>
+&lt;p>Nuxt Bridge permet de prendre avantage du TypeScript avec la Composition API et Script Setup de manière partielle. Des composants ou plus généralement du code TS peuuvent donc être introduits graduellement dans nos applications. Cet intermédiaire introduit également Nuxi, le nouveau CLI de Nuxt 3.&lt;/p>
+&lt;h3 id="typescript">TypeScript&lt;/h3>
+&lt;p>Nuxt3 introduit l’usage complet de TypeScript à la place de JavaScript. Une direction qu’une grande partie des frameworks semblent prendre. Nuxt Bridge devrait permettre cette transition pour des applications existantes.&lt;/p>
+&lt;p>TypeScript donne la possibilité de construire des applications qui évoluent tout en offrant du code plus strict et une meilleure expérience dev.&lt;/p>
+&lt;p>Ce changement semble venir très tard pour un framework tel que Nuxt mais étant jusqu’à récemment dépendant de Vue 2, cette évolution n’était pas possible avant.&lt;/p>
+&lt;h2 id="a-retenir">A retenir&lt;/h2>
+&lt;p>Nuxt3 semble sans aucun doute être l’équivalent Vue de Next.js. Encore en phase de développement avec beaucoup d’implémentations à venir, le framework est très prometteur.&lt;/p>
+&lt;p>Le passage à TypeScript devrait encourager l’adoption plus générale du language dans les écosystèmes Vue et aussi permettre de construire des applications plus grandes et plus efficaces.&lt;/p>
+&lt;p>Ceci combiné au Composition API et le Script Setup devrait introduire un standard (best practice) de code pour les applications Vue 3 qui d’expérience sont très permissibles et peuvent parfois amener à des confusions entre collaborateurs.&lt;/p>
+&lt;p>Dans l’ensemble, le framework prend avantage des améliorations amenées par Vue3 et construit dessus pour fournir une expérience de développement amélioré.&lt;/p>
+&lt;h2 id="sources">Sources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://www.vuemastery.com/blog/nuxt-3-is-here/">&lt;/a>&lt;a href="https://www.vuemastery.com/blog/nuxt-3-is-here/">Nuxt 3 is here! What does that mean for you? | Vue Mastery&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://v3.nuxtjs.org/concepts/introduction">&lt;/a>&lt;a href="https://v3.nuxtjs.org/concepts/introduction">Nuxt 3 - What is Nuxt?&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.sitepoint.com/nuxt-3-whats-new-get-started/">&lt;/a>&lt;a href="https://www.sitepoint.com/nuxt-3-whats-new-get-started/">SitePoint&lt;/a>&lt;/li>
+&lt;/ul></content></item></channel></rss>

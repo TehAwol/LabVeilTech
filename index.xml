@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog de Mikkel</title><link>https://tehawol.github.io/LabVeilTech/</link><description>Recent content on Blog de Mikkel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://tehawol.github.io/LabVeilTech/index.xml" rel="self" type="application/rss+xml"/><item><title>Expérimentation - Gestion de routes asyncrones sur Express</title><link>https://tehawol.github.io/LabVeilTech/posts/experimentation/</link><pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/experimentation/</guid><description>Expérimentation - Gestion de routes asyncrones sur Express Asyncrone et Express Dans le framework Node.js, Express, je vais mettre en place un REST API qui retourne divers ressources grâce à des requêtes. Je vais employer du code asyncrone afin de communiquer avec notre base de données hébergé sur un serveur MongoDB externe.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog de Mikkel</title><link>https://tehawol.github.io/LabVeilTech/</link><description>Recent content on Blog de Mikkel</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 24 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://tehawol.github.io/LabVeilTech/index.xml" rel="self" type="application/rss+xml"/><item><title>Expérimentation - Gestion de routes asyncrones sur Express</title><link>https://tehawol.github.io/LabVeilTech/posts/experimentation/</link><pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/experimentation/</guid><description>Expérimentation - Gestion de routes asyncrones sur Express Asyncrone et Express Dans le framework Node.js, Express, je vais mettre en place un REST API qui retourne divers ressources grâce à des requêtes. Je vais employer du code asyncrone afin de communiquer avec notre base de données hébergé sur un serveur MongoDB externe.
 Devant faire face à divers latence ou tout simplement des érreurs, il est important qu&amp;rsquo;un gestion d&amp;rsquo;erreur est en place pour le code asyncrone.</description><content>&lt;h1 id="expérimentation---gestion-de-routes-asyncrones-sur-express">Expérimentation - Gestion de routes asyncrones sur Express&lt;/h1>
 &lt;h2 id="asyncrone-et-express">Asyncrone et Express&lt;/h2>
 &lt;p>Dans le framework Node.js, Express, je vais mettre en place un REST API qui retourne divers ressources grâce à des requêtes. Je vais employer du code asyncrone afin de communiquer avec notre base de données hébergé sur un serveur MongoDB externe.&lt;/p>
@@ -141,12 +141,13 @@ Devant faire face à divers latence ou tout simplement des érreurs, il est impo
 &lt;ul>
 &lt;li>&lt;a href="https://www.wisdomgeek.com/development/web-development/using-async-await-in-expressjs/">https://www.wisdomgeek.com/development/web-development/using-async-await-in-expressjs/&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.npmjs.com/package/express-async-handler">https://www.npmjs.com/package/express-async-handler&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>Nuxt3, la prochaine étape</title><link>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</link><pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</guid><description>Nuxt3, la prochaine étape. Nuxt en quelques mots Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.
+&lt;/ul></content></item><item><title>Nuxt3, la prochaine étape</title><link>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</link><pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/nuxt3/</guid><description>Nuxt3, la prochaine étape. Nuxt en quelques mots Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.
 Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.
 Que promet Nuxt3 ? Script Setup avec Composition API pour les SFC Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks.</description><content>&lt;h1 id="nuxt3-la-prochaine-étape">Nuxt3, la prochaine étape.&lt;/h1>
 &lt;h3 id="nuxt-en-quelques-mots">Nuxt en quelques mots&lt;/h3>
 &lt;p>Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.&lt;/p>
 &lt;p>Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.&lt;/p>
+&lt;p>&lt;img src="https://tehawol.github.io/LabVeilTech/static/images/nuxt3.jpg" alt="Nuxt3-image">&lt;/p>
 &lt;h2 id="que-promet-nuxt3-">Que promet Nuxt3 ?&lt;/h2>
 &lt;h3 id="script-setup-avec-composition-api-pour-les-sfc">Script Setup avec Composition API pour les SFC&lt;/h3>
 &lt;p>Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks. La possibilité d’utiliser le script setup avec la composition API est toujours présente ce qui a pour but de rendre les composants plus lisibles et le code plus accessible.&lt;/p>
@@ -197,7 +198,7 @@ Que promet Nuxt3 ? Script Setup avec Composition API pour les SFC Nuxt 3 apporte
 &lt;li>&lt;a href="https://www.vuemastery.com/blog/nuxt-3-is-here/">&lt;/a>&lt;a href="https://www.vuemastery.com/blog/nuxt-3-is-here/">Nuxt 3 is here! What does that mean for you? | Vue Mastery&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://v3.nuxtjs.org/concepts/introduction">&lt;/a>&lt;a href="https://v3.nuxtjs.org/concepts/introduction">Nuxt 3 - What is Nuxt?&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.sitepoint.com/nuxt-3-whats-new-get-started/">&lt;/a>&lt;a href="https://www.sitepoint.com/nuxt-3-whats-new-get-started/">SitePoint&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>Web3, une solution miracle ?</title><link>https://tehawol.github.io/LabVeilTech/posts/web3/</link><pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/web3/</guid><description>Web3, une solution miracle ? Le Web3 ? Premièrement nous avons eu Web1 qui n’était autre que des documents web avec des hyperliens entre eux. En 2004 avec la démocratisation de l’internet, nous voyons l’émergence du Web2 qui contribue fortement à la croissance des GAFAs grâce à leurs diverses plateformes.
+&lt;/ul></content></item><item><title>Web3, une solution miracle ?</title><link>https://tehawol.github.io/LabVeilTech/posts/web3/</link><pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/web3/</guid><description>Web3, une solution miracle ? Le Web3 ? Premièrement nous avons eu Web1 qui n’était autre que des documents web avec des hyperliens entre eux. En 2004 avec la démocratisation de l’internet, nous voyons l’émergence du Web2 qui contribue fortement à la croissance des GAFAs grâce à leurs diverses plateformes.
 Aujourd’hui, nous serions à la limite du Web3, une version du web basé sur la cryto ou plus précisément les tokens.</description><content>&lt;h1 id="web3-une-solution-miracle-">Web3, une solution miracle ?&lt;/h1>
 &lt;h2 id="le-web3-">Le Web3 ?&lt;/h2>
 &lt;p>Premièrement nous avons eu Web1 qui n’était autre que des documents web avec des hyperliens entre eux. En 2004 avec la démocratisation de l’internet, nous voyons l’émergence du Web2 qui contribue fortement à la croissance des GAFAs grâce à leurs diverses plateformes.&lt;/p>
@@ -229,7 +230,7 @@ Aujourd’hui, nous serions à la limite du Web3, une version du web basé sur l
 &lt;li>&lt;a href="https://www.stephendiehl.com/blog/web3-bullshit.html">&lt;/a>&lt;a href="https://www.stephendiehl.com/blog/web3-bullshit.html">Web3 is Bullshit&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.infoworld.com/article/3646597/what-is-web3-a-new-decentralized-web-or-the-latest-marketing-buzzword.html">&lt;/a>&lt;a href="https://www.infoworld.com/article/3646597/what-is-web3-a-new-decentralized-web-or-the-latest-marketing-buzzword.html">What is Web3? A new decentralized web, or the latest marketing buzzword | InfoWorld&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.youtube.com/watch?v=wHTcrmhskto">&lt;/a>&lt;a href="https://www.youtube.com/watch?v=wHTcrmhskto">Is Web3 all Hype? Top 10 Web 3.0 Questions &amp;amp; Answers - YouTube&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>Proposition de pipe operator pour JavaScript</title><link>https://tehawol.github.io/LabVeilTech/posts/pipe-operator/</link><pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/pipe-operator/</guid><description>Proposition de pipe operator pour JavaScript L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages.
+&lt;/ul></content></item><item><title>Proposition de pipe operator pour JavaScript</title><link>https://tehawol.github.io/LabVeilTech/posts/pipe-operator/</link><pubDate>Sat, 15 Jan 2022 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/pipe-operator/</guid><description>Proposition de pipe operator pour JavaScript L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages.
 Les défenseurs de la proposition affirment que des fonctions imbriquées peuvent rapidement devenir complexes et illisibles. Pour combler ceci, ils veulent introduire l’opérateur “|&amp;gt;” à JavaScript.
 Pour comprendre ce que cet opérateur peut apporter au language, regardons les deux propositions.</description><content>&lt;h1 id="proposition-de-pipe-operator-pour-javascript">Proposition de pipe operator pour JavaScript&lt;/h1>
 &lt;p>L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages.&lt;/p>
@@ -289,17 +290,70 @@ Pour comprendre ce que cet opérateur peut apporter au language, regardons les d
 &lt;li>&lt;a href="https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com">&lt;/a>&lt;a href="https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com">https://2ality.com/2022/01/pipe-operator.html?ref=webdesignernews.com&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/tc39/proposal-pipeline-operator">GitHub - tc39/proposal-pipeline-operator: A proposal for adding a useful pipe operator to JavaScript.&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/tc39/proposal-pipeline-operator/issues/205">Hack is dead. Long live F#. · Issue #205 · tc39/proposal-pipeline-operator · GitHub&lt;/a>&lt;/li>
-&lt;/ul></content></item><item><title>About</title><link>https://tehawol.github.io/LabVeilTech/about/</link><pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/about/</guid><description>Hi there My name is Radek and I&amp;rsquo;m the author of this theme. I made it to help you present your ideas easier.
-We all know how hard is to start something on the web, especially these days. You need to prepare a bunch of stuff, configure them and when that’s done — create the content.
-This theme is pretty basic and covers all of the essentials. All you have to do is start typing!</description><content>&lt;h1 id="hi-there">Hi there&lt;/h1>
-&lt;p>My name is Radek and I&amp;rsquo;m the author of this theme. I made it to help you present your ideas easier.&lt;/p>
-&lt;p>We all know how hard is to start something on the web, especially these days. You need to prepare a bunch of stuff, configure them and when that’s done — create the content.&lt;/p>
-&lt;p>This theme is pretty basic and covers all of the essentials. All you have to do is start typing!&lt;/p>
-&lt;p>The theme includes:&lt;/p>
+&lt;/ul></content></item><item><title>Observable, l’environnement dataviz accessible ?</title><link>https://tehawol.github.io/LabVeilTech/posts/observable/</link><pubDate>Mon, 27 Dec 2021 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/posts/observable/</guid><description>Observable, l’environnement dataviz accessible ? Mike Bostock, le créateur de la libraire D3 (librairie pour la visualisation des données), annonce la sortie d&amp;rsquo;Observable. Un environnement de Dev en ligne.
+L’auteur explique qu’en produisant des visualisations plus complexes, le code le devenait également. Les languages de code utilisés, la syntaxe et la manière d’utilisation sont des sources de complexités qui contribue à ce problème. Le manque de preview pour certains utilisateurs est également une barrière à l’accessibilité du code et du domaine.</description><content>&lt;h1 id="observable-lenvironnement-dataviz-accessible-">Observable, l’environnement dataviz accessible ?&lt;/h1>
+&lt;p>Mike Bostock, le créateur de la libraire D3 (librairie pour la visualisation des données), annonce la sortie d&amp;rsquo;Observable. Un environnement de Dev en ligne.&lt;/p>
+&lt;p>L’auteur explique qu’en produisant des visualisations plus complexes, le code le devenait également. Les languages de code utilisés, la syntaxe et la manière d’utilisation sont des sources de complexités qui contribue à ce problème. Le manque de preview pour certains utilisateurs est également une barrière à l’accessibilité du code et du domaine.&lt;/p>
+&lt;p>Place à Observable. Un “environement de découverte intégré” qui promet de rendre la dataviz plus portable et rapide grâce à un &lt;strong>code&lt;/strong> plus accessible. Un principe introduit sont des cellules de code que l’utilisateur peut ajouter à sa page de code (dans son navigateur). Dedans, il peut coder du JavaScript tout comme dans un vrai environnement. Bostock explique la raison d’être de Observable par 4 mots :&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>5 duotone themes&lt;/strong>, depending on your preferences (orange, red, blue, green, pink)&lt;/li>
-&lt;li>&lt;a href="https://github.com/tonsky/FiraCode">&lt;strong>Fira Code&lt;/strong>&lt;/a> as default monospaced font. It&amp;rsquo;s gorgeous!&lt;/li>
-&lt;li>&lt;strong>really nice, custom duotone&lt;/strong> syntax highlighting based on &lt;a href="https://prismjs.com">&lt;strong>PrismJS&lt;/strong>&lt;/a>&lt;/li>
-&lt;li>mobile friendly layout&lt;/li>
+&lt;li>Reactivité&lt;/li>
+&lt;li>Visibilité&lt;/li>
+&lt;li>Réusabilité&lt;/li>
+&lt;li>Portabilité&lt;/li>
 &lt;/ul>
-&lt;p>So, there you have it&amp;hellip; enjoy!&lt;/p></content></item></channel></rss>
+&lt;p>Un exemple des cellules de code et de la &lt;strong>réactivité&lt;/strong> de Observable&lt;/p>
+&lt;p>&lt;img src="" alt="1 fkkqWrbWXua8sMGlYqnqAgif">&lt;/p>
+&lt;p>source : &lt;a href="https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0">&lt;/a>&lt;a href="https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0">https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0&lt;/a>&lt;/p>
+&lt;h2 id="reactivité">Reactivité&lt;/h2>
+&lt;p>Pour ce faire il introduit la réactivité, comme beaucoup d’autres framework, les variables sont réactives au changement et ceci de manière globale (sur une page).&lt;/p>
+&lt;p>Le code asynchrone est également pris en charge. Les cellules ne sont pas affichées tant que les requêtes soient résolues. Ce comportement est très important pour l’importation de libraire et bien sûr de données.&lt;/p>
+&lt;p>De manière plus importante pour la visualisation de données, la réactivité de l’environnement nous permet d’utiliser D3 pour créer directement des graphes en ajoutant le SVG généré au DOM.&lt;/p>
+&lt;p>Ceci nous permet d’ajouter plus interaction à nos graphes tels que des animations en une fois de plus prenant avantage de la libraire D3. Bostock donne également des exemples de graphes qui s’anime en fonction d’une valeur ou encore des proto-dashboard avec lequel l’utilisateur peut explorer les données avec un feedback visuel.&lt;/p>
+&lt;h2 id="visibilité">Visibilité&lt;/h2>
+&lt;p>Comme mentionné pour la réactivité, le fait de pouvoir afficher directement nos graphes à côté de notre code nous permet de les corriger plus facilement. Ceci rend également l’environnement hautement accessible en permettant à des débutants dans la visualisation de &lt;strong>voir&lt;/strong> directement les changements dans le code ou pour les débutants d’avoir un feedback plus rapide et visuel de leur code.&lt;/p>
+&lt;p>On souligne également la possibilité d’afficher des executions de code pour des algorithmes qui ont une certaine durée. Ceci peut paraître comme étant un simple exercice mais au final ceci est utile pour visualiser comment notre code s’exécute. Ceci est très intéressant dans des contextes mathématiques pour par exemple, la résolution de problèmes géométriques.&lt;/p>
+&lt;h2 id="réusabilité">Réusabilité&lt;/h2>
+&lt;p>Un grand avantage du code et surtout des librairies, est leur réusabilité, leur qualité à être réutilisé plusieurs fois dans différents projets et de différentes manières. Pour conserver ceci, les pages Observable sont considérés comme des fichiers JS par d’autres pages (avec un require() ).&lt;/p>
+&lt;p>Grâce à ce principe, les notebooks peuvent construit un peu comme tel des vrais projets dans lesquelles nous pouvons réutiliser des cellules ou page de code déclaré en amont.&lt;/p>
+&lt;p>Le plus grand avantage est bien sûr le partage avec les autres utilisateurs, les pages de code sont considérés comme des fichiers ou libraire de code par &lt;strong>de facto&lt;/strong>. De ce fait, il est possible d’importer des pages d’autres utilisateurs tels que des packages NPM.&lt;/p>
+&lt;h2 id="portabilité">Portabilité&lt;/h2>
+&lt;p>Reposant sur votre navigateur et une connexion à Observable, l’environnement est très portable. Pour être rendu dans le navigateur, il utilise du JavaScript vanilla tout en donnant la possibilité d’importer des libraires ou du code d’ailleurs.&lt;/p>
+&lt;p>Il va de même pour le partage. Bostock se plaint que la majorité du code partagé partagé sur GitHub n’est pas accessible car nous devons repeter un nombre d’opérations pour le visualiser dans notre navigateur. Observable répond à ce problème en mettant à disposition un environnement partageable qui affiche directement le code qui le compose.&lt;/p>
+&lt;h2 id="verdicte">Verdicte&lt;/h2>
+&lt;p>La raison d’être de l’environnement est succintement expliquée par son créateur dans ces 4 points. Ayant utilisé l’environnement à divers buts, il est vrai qu’il répond à ces promesses mais derière cette élégante proposition, quelques problèmes se cachent.&lt;/p>
+&lt;p>L’environnement est fortement accessible et en reposant sur JavaScript, des développeurs web ou encore des data scientists peuvent facilement faire le changement vers Observable ou le tester très rapidement. Certains développeurs l’utilise en effet à des buts de documentation interactive pour leurs projets GitHub.&lt;/p>
+&lt;p>Dans mon usage, la puissance d&amp;rsquo;Obersvable est dans son accessibilité. De pouvoir partager et travailler de manière interactive sur du code (comme un GitHub live) et de pouvoir montrer en live les conséquences de notre code.&lt;/p>
+&lt;p>Ceci est fortement utile dans des contextes où l&amp;rsquo;on travaille avec des personnes moins familiers avec le code ou qui on besoin d&amp;rsquo;un feedback plus visuel.&lt;/p>
+&lt;h3 id="sources-">Sources :&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0">&lt;/a>&lt;a href="https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0">https://medium.com/@mbostock/a-better-way-to-code-2b1d2876a3a0&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>About</title><link>https://tehawol.github.io/LabVeilTech/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tehawol.github.io/LabVeilTech/about/</guid><description>A propos Salut! Moi c’est Mikkel. Je suis un étudiant de 3ème année de bachelor à la HEIG-VD en Ingénierie des Médias. Sur ce blog, vous allez trouver divers articles traitant de sujets qui me passionnent ou qui me tiennent à coeur.
+Ayant bientôt finis ma formation, je souhaiterai poursuivre un carrière en tant que developpeur web si possible dans un domaine lié à la visualisation de données
+Pourquoi ce blog ?</description><content>&lt;h1 id="a-propos">A propos&lt;/h1>
+&lt;p>Salut! Moi c’est Mikkel. Je suis un étudiant de 3ème année de bachelor à la HEIG-VD en Ingénierie des Médias. Sur ce blog, vous allez trouver divers articles traitant de sujets qui me passionnent ou qui me tiennent à coeur.&lt;/p>
+&lt;p>Ayant bientôt finis ma formation, je souhaiterai poursuivre un carrière en tant que developpeur web si possible dans un domaine lié à la visualisation de données&lt;/p>
+&lt;h2 id="pourquoi-ce-blog-">Pourquoi ce blog ?&lt;/h2>
+&lt;p>Sur ce blog je vais partager divers expériences ou informations que j’ai acquis dans mon parcours d’étudiant et dans ma vie professionnelle. Le contenu de ce blog s’appuie fortement sur un exercise d’Ikigai auquel j’ai participé qui se déconstruit comme ci :&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Passion : Jeux vidéos, programmation, technologies web et le dataviz&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Mission : Rendre l&amp;rsquo;univers de la programmation et des données plus accessible&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Vocation : La recherche et le partage (enseignement) de nouvelles solutions&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Profession : Developpeur web&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Mon Ikigai -&amp;gt; Le developpement web avec une touche d&amp;rsquo;enseignement ou de partage&lt;/p>
+&lt;h2 id="taxonomie">Taxonomie&lt;/h2>
+&lt;p>Pour filtrer ou encore identifier les articles qui pourraient vous parlez, regardez les mots-clés associées ainsi que les tags associés. Vous trouverez 3 domaines principaux :&lt;/p>
+&lt;ul>
+&lt;li>Frontend&lt;/li>
+&lt;li>Backend&lt;/li>
+&lt;li>Technologie&lt;/li>
+&lt;/ul>
+&lt;p>Chaque article possède ses propres tags qui précise encore plus de quoi il s&amp;rsquo;agit.&lt;/p></content></item></channel></rss>

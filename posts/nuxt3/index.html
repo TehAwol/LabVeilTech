@@ -23,14 +23,15 @@
 <meta property="og:image" content="https://tehawol.github.io/LabVeilTech/hello.jpg">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2021-01-19 00:00:00 +0000 UTC">
+<meta property="article:section" content="Backend">
+<meta property="article:published_time" content="2022-01-19 00:00:00 +0000 UTC">
 </head>
 <body class=pink>
 <div class="container center headings--one-size">
 <header class=header>
 <div class=header__inner>
 <div class=header__logo>
-<a href=/>
+<a href=/LabVeilTech>
 <div class=logo>
 Mikvester
 </div>
@@ -41,9 +42,18 @@ Mikvester
 <nav class=menu>
 <ul class="menu__inner menu__inner--desktop">
 <li><a href=/LabVeilTech/about>About</a></li>
+<li><a href=/LabVeilTech/categories>Categories</a></li>
+<ul class=menu__sub-inner>
+<li class=menu__sub-inner-more-trigger>Show more ▾</li>
+<ul class="menu__sub-inner-more hidden">
+<li><a href=/LabVeilTech/posts>Posts</a></li>
+</ul>
+</ul>
 </ul>
 <ul class="menu__inner menu__inner--mobile">
 <li><a href=/LabVeilTech/about>About</a></li>
+<li><a href=/LabVeilTech/categories>Categories</a></li>
+<li><a href=/LabVeilTech/posts>Posts</a></li>
 </ul>
 </nav>
 </header>
@@ -53,16 +63,24 @@ Mikvester
 <a href=https://tehawol.github.io/LabVeilTech/posts/nuxt3/>Nuxt3, la prochaine étape</a></h1>
 <div class=post-meta>
 <span class=post-date>
-2021-01-19
+2022-01-19
 </span>
 <span class=post-author>:: Mikkel</span>
 </div>
+<span class=post-tags>
+#<a href=https://tehawol.github.io/LabVeilTech/tags/javascript/>JavaScript</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/typescript/>TypeScript</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/vue/>Vue</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/nuxt/>Nuxt</a>&nbsp;
+#<a href=https://tehawol.github.io/LabVeilTech/tags/discussion/>Discussion</a>&nbsp;
+</span>
 <img src=https://tehawol.github.io/LabVeilTech/hello.jpg class=post-cover alt="Nuxt3, la prochaine étape" title="Cover Image">
 <div class=post-content><div>
 <h1 id=nuxt3-la-prochaine-étape>Nuxt3, la prochaine étape.<a href=#nuxt3-la-prochaine-étape class=hanchor arialabel=Anchor>&#8983;</a> </h1>
 <h3 id=nuxt-en-quelques-mots>Nuxt en quelques mots<a href=#nuxt-en-quelques-mots class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <p>Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.</p>
 <p>Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.</p>
+<p><img src=/static/images/nuxt3.jpg alt=Nuxt3-image></p>
 <h2 id=que-promet-nuxt3->Que promet Nuxt3 ?<a href=#que-promet-nuxt3- class=hanchor arialabel=Anchor>&#8983;</a> </h2>
 <h3 id=script-setup-avec-composition-api-pour-les-sfc>Script Setup avec Composition API pour les SFC<a href=#script-setup-avec-composition-api-pour-les-sfc class=hanchor arialabel=Anchor>&#8983;</a> </h3>
 <p>Nuxt 3 apporte beaucoup de changements fondamentaux à son framework notamment le changement à TypeScript (discuté plus loin) comme language de framework, en gardant une compatibilité avec JavaScript tout comme d’autres frameworks. La possibilité d’utiliser le script setup avec la composition API est toujours présente ce qui a pour but de rendre les composants plus lisibles et le code plus accessible.</p>
