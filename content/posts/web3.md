@@ -1,6 +1,6 @@
 +++
 title = "Web3, une solution miracle ?"
-date = "2022-01-19"
+date = "2022-01-23"
 author = "Mikkel"
 cover = "hello.jpg"
 description = "Web3 vient avec beaucoup de promesses, jettons un regard sur les soucis de cette technologie"
