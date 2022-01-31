@@ -1,9 +1,11 @@
 +++
 title = "Expérimentation - Gestion de routes asyncrones sur Express"
-date = "2021-01-24"
+date = "2022-01-24"
 author = "Mikkel"
 cover = "hello.jpg"
 description = "Dans cette expérimentation, je vais implémenter une requête asynconre dans une route Express de différentes façons en regardant les avantages et désavantages."
+categories = ['Backend']
+tags = ['JavaScript', 'Express', 'Async', 'Experiment']
 +++
 
 # Expérimentation - Gestion de routes asyncrones sur Express

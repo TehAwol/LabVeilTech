@@ -1,22 +1,36 @@
 +++
 title = "About"
-date = "2019-01-25"
-author = "Radek"
+date = "2022-01-9"
+author = "Mikkel"
 +++
 
-# Hi there
+# A propos
 
-My name is Radek and I'm the author of this theme. I made it to help you present your ideas easier.
+Salut! Moi c’est Mikkel. Je suis un étudiant de 3ème année de bachelor à la HEIG-VD en Ingénierie des Médias. Sur ce blog, vous allez trouver divers articles traitant de sujets qui me passionnent ou qui me tiennent à coeur.
 
-We all know how hard is to start something on the web, especially these days. You need to prepare a bunch of stuff, configure them and when that’s done — create the content.
+Ayant bientôt finis ma formation, je souhaiterai poursuivre un carrière en tant que developpeur web si possible dans un domaine lié à la visualisation de données
 
-This theme is pretty basic and covers all of the essentials. All you have to do is start typing!
+## Pourquoi ce blog ?
 
-The theme includes:
+Sur ce blog je vais partager divers expériences ou informations que j’ai acquis dans mon parcours d’étudiant et dans ma vie professionnelle. Le contenu de ce blog s’appuie fortement sur un exercise d’Ikigai auquel j’ai participé qui se déconstruit comme ci :
 
-- **5 duotone themes**, depending on your preferences (orange, red, blue, green, pink)
-- [**Fira Code**](https://github.com/tonsky/FiraCode) as default monospaced font. It's gorgeous!
-- **really nice, custom duotone** syntax highlighting based on [**PrismJS**](https://prismjs.com)
-- mobile friendly layout
+- Passion : Jeux vidéos, programmation, technologies web et le dataviz
+  
+- Mission : Rendre l'univers de la programmation et des données plus accessible
+  
+- Vocation : La recherche et le partage (enseignement) de nouvelles solutions
+  
+- Profession : Developpeur web
+  
 
-So, there you have it... enjoy!
+Mon Ikigai -> Le developpement web avec une touche d'enseignement ou de partage
+
+## Taxonomie
+
+Pour filtrer ou encore identifier les articles qui pourraient vous parlez, regardez les mots-clés associées ainsi que les tags associés. Vous trouverez 3 domaines principaux :
+
+- Frontend
+- Backend
+- Technologie
+
+Chaque article possède ses propres tags qui précise encore plus de quoi il s'agit.

@@ -1,9 +1,11 @@
 +++
 title = "Nuxt3, la prochaine étape"
-date = "2021-01-19"
+date = "2022-01-19"
 author = "Mikkel"
 cover = "hello.jpg"
 description = "Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie."
+categories = ['Backend']
+tags = ['JavaScript', 'TypeScript', 'Vue', 'Nuxt', 'Discussion']
 +++
 
 # Nuxt3, la prochaine étape.
@@ -13,6 +15,8 @@ description = "Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé
 Nuxt est une librairie JavaScript open source qui fournit un framework basé sur Vue fortement inspiré par Next.js, son équivalent React.
 
 Avec la sortie récente de Vue3, une mise à jour de Nuxt2 (basé sur Vue 2) était donc attendue. En octobre 2021, la version beta de Nuxt3 est sortie.
+
+![Nuxt3-image](/static/images/nuxt3.jpg)
 
 ## Que promet Nuxt3 ?
 

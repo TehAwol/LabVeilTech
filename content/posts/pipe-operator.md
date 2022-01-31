@@ -1,9 +1,11 @@
 +++
 title = "Proposition de pipe operator pour JavaScript"
-date = "2021-01-15"
+date = "2022-01-15"
 author = "Mikkel"
 cover = "hello.jpg"
 description = "L’idée d’ajouter un pipe operator à JavaScript provient de deux propositions issues des languages F# par Microsoft et Hack par Facebook avec chacun leurs avantages et désavantages. Parlons en!"
+categories = ['Techonologie']
+tags = ['JavaScript','JS-Proposition','Discussion']
 +++
 
 # Proposition de pipe operator pour JavaScript
